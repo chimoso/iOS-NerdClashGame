@@ -13,8 +13,11 @@
 		8C17154F1C52E55100A2B1E0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8C17154E1C52E55100A2B1E0 /* Assets.xcassets */; };
 		8C1715521C52E55100A2B1E0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8C1715501C52E55100A2B1E0 /* LaunchScreen.storyboard */; };
 		8C17155A1C52EF0200A2B1E0 /* Minecraft.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8C1715591C52EF0200A2B1E0 /* Minecraft.ttf */; };
-		8C17155C1C52F72700A2B1E0 /* Character.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C17155B1C52F72700A2B1E0 /* Character.swift */; };
-		8C1715621C53220500A2B1E0 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C1715611C53220500A2B1E0 /* Player.swift */; };
+		8C17155C1C52F72700A2B1E0 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C17155B1C52F72700A2B1E0 /* Player.swift */; };
+		8C1715681C5E6ED500A2B1E0 /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C1715671C5E6ED500A2B1E0 /* Game.swift */; };
+		8C17156C1C617CEA00A2B1E0 /* Arcade_Background_Music.wav in Resources */ = {isa = PBXBuildFile; fileRef = 8C1715691C617CEA00A2B1E0 /* Arcade_Background_Music.wav */; };
+		8C17156D1C617CEA00A2B1E0 /* Male_Death_Sound.wav in Resources */ = {isa = PBXBuildFile; fileRef = 8C17156A1C617CEA00A2B1E0 /* Male_Death_Sound.wav */; };
+		8C17156E1C617CEA00A2B1E0 /* Melee_Attack_Sound.wav in Resources */ = {isa = PBXBuildFile; fileRef = 8C17156B1C617CEA00A2B1E0 /* Melee_Attack_Sound.wav */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,8 +29,11 @@
 		8C1715511C52E55100A2B1E0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8C1715531C52E55100A2B1E0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8C1715591C52EF0200A2B1E0 /* Minecraft.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Minecraft.ttf; sourceTree = "<group>"; };
-		8C17155B1C52F72700A2B1E0 /* Character.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Character.swift; sourceTree = "<group>"; };
-		8C1715611C53220500A2B1E0 /* Player.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
+		8C17155B1C52F72700A2B1E0 /* Player.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
+		8C1715671C5E6ED500A2B1E0 /* Game.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
+		8C1715691C617CEA00A2B1E0 /* Arcade_Background_Music.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Arcade_Background_Music.wav; sourceTree = "<group>"; };
+		8C17156A1C617CEA00A2B1E0 /* Male_Death_Sound.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Male_Death_Sound.wav; sourceTree = "<group>"; };
+		8C17156B1C617CEA00A2B1E0 /* Melee_Attack_Sound.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Melee_Attack_Sound.wav; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,14 +67,17 @@
 		8C1715461C52E55100A2B1E0 /* NerdClash */ = {
 			isa = PBXGroup;
 			children = (
+				8C1715691C617CEA00A2B1E0 /* Arcade_Background_Music.wav */,
+				8C17156A1C617CEA00A2B1E0 /* Male_Death_Sound.wav */,
+				8C17156B1C617CEA00A2B1E0 /* Melee_Attack_Sound.wav */,
 				8C1715471C52E55100A2B1E0 /* AppDelegate.swift */,
 				8C1715491C52E55100A2B1E0 /* ViewController.swift */,
 				8C17154B1C52E55100A2B1E0 /* Main.storyboard */,
 				8C17154E1C52E55100A2B1E0 /* Assets.xcassets */,
 				8C1715501C52E55100A2B1E0 /* LaunchScreen.storyboard */,
 				8C1715531C52E55100A2B1E0 /* Info.plist */,
-				8C17155B1C52F72700A2B1E0 /* Character.swift */,
-				8C1715611C53220500A2B1E0 /* Player.swift */,
+				8C17155B1C52F72700A2B1E0 /* Player.swift */,
+				8C1715671C5E6ED500A2B1E0 /* Game.swift */,
 			);
 			path = NerdClash;
 			sourceTree = "<group>";
@@ -130,7 +139,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8C17156D1C617CEA00A2B1E0 /* Male_Death_Sound.wav in Resources */,
 				8C1715521C52E55100A2B1E0 /* LaunchScreen.storyboard in Resources */,
+				8C17156C1C617CEA00A2B1E0 /* Arcade_Background_Music.wav in Resources */,
+				8C17156E1C617CEA00A2B1E0 /* Melee_Attack_Sound.wav in Resources */,
 				8C17154F1C52E55100A2B1E0 /* Assets.xcassets in Resources */,
 				8C17155A1C52EF0200A2B1E0 /* Minecraft.ttf in Resources */,
 				8C17154D1C52E55100A2B1E0 /* Main.storyboard in Resources */,
@@ -146,8 +158,8 @@
 			files = (
 				8C17154A1C52E55100A2B1E0 /* ViewController.swift in Sources */,
 				8C1715481C52E55100A2B1E0 /* AppDelegate.swift in Sources */,
-				8C1715621C53220500A2B1E0 /* Player.swift in Sources */,
-				8C17155C1C52F72700A2B1E0 /* Character.swift in Sources */,
+				8C17155C1C52F72700A2B1E0 /* Player.swift in Sources */,
+				8C1715681C5E6ED500A2B1E0 /* Game.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
