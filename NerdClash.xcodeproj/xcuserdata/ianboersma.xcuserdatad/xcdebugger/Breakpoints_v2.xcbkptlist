@@ -6,16 +6,16 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "NerdClash/ViewController.swift"
-            timestampString = "475871034.294384"
+            filePath = "NerdClash/Game.swift"
+            timestampString = "476157303.301715"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "45"
-            endingLineNumber = "45"
-            landmarkName = "onTapPlyr1AttackBtn(_:)"
+            startingLineNumber = "28"
+            endingLineNumber = "28"
+            landmarkName = "init(vc:)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

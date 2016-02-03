@@ -1,5 +1,5 @@
 //
-//  Character.swift
+//  Player.swift
 //  NerdClash
 //
 //  Created by Ian Boersma on 1/22/16.
@@ -7,74 +7,86 @@
 //
 
 import Foundation
+import UIKit
+import AVFoundation
 
-class Character {
+class Player {
     
     private var _hp: Int = 100
-    private var _attackPwr: Int
-    private var _name = "Player"
+    private var _attackPower: Int = 20
+    private var _name: String = "PlayerName"
+    private var _characterChoice: Int = 1
     
-    //getters
+    // Getters (computed properties).
     var hp: Int {
-        get {
-            return _hp
-        }
+        get { return _hp }
     }
     
-//    var attackPwr: Int {
-//        get {
-//            // Generate random attack HP between 0 and 20
-//            let rand = Int(arc4random_uniform(20))
-//            self._attackPwr = rand
-//            return rand
-//        }
-//    }
-    
-    var attackPwr: Int {
-        get {
-            return _attackPwr
-        }
+    var attackPower: Int {
+        get { return _attackPower }
     }
     
     var name: String {
-        get {
-            return _name
+        get { return _name }
+    }
+    
+    var characterChoice: Int {
+        get {return _characterChoice }
+    }
+    
+    // Initialiser.
+    init(startHp: Int, startAttackPower: Int, startName: String, characterChoiceIn: Int) {
+        self._hp = startHp
+        self._attackPower = startAttackPower
+        self._name = startName
+        self._characterChoice = characterChoiceIn
+    }
+    
+    // Perform an attack.
+    func executeAttack(attackingPlayer: Player, playerBeingAttacked: Player) {
+        // Randomise the attack power before attacking.
+        attackingPlayer.randomiseAttackPower()
+        
+        if playerBeingAttacked._hp > 0 {
+            playerBeingAttacked._hp -= attackingPlayer._attackPower
         }
     }
     
-    var isAlive: Bool {
-        get {
-            if _hp <= 0 {
-                return false
+    // Check if still alive (i.e. HP above 0).
+    func isAlive () -> Bool {
+        if self._hp <= 0 {
+            return false
+        }
+        return true
+    }
+    
+    // Randomise the attack power.
+    func randomiseAttackPower() {
+        self._attackPower = Int(arc4random_uniform(UInt32(_attackPower)))
+    }
+    
+    // Reset the attack power back to the default.
+    func resetAttackPower() {
+        self._attackPower = 20
+    }
+    
+    // Set the player's image (and flip the image if needed).
+    func setPlayerImage(playerNumberIn: Int, imageChoiceIn: Int) -> UIImage {
+        if imageChoiceIn == 1 {
+            if playerNumberIn == 1 {
+                let flippedImage = UIImage(CGImage: UIImage(named: "player")!.CGImage!, scale: 1.0, orientation: .UpMirrored)
+                return flippedImage
             } else {
-                return true
+                return UIImage(named: "player")!
+            }
+            
+        } else {
+            if playerNumberIn == 2 {
+                let flippedImage = UIImage(CGImage: UIImage(named: "enemy")!.CGImage!, scale: 1.0, orientation: .UpMirrored)
+                return flippedImage
+            } else {
+                return UIImage(named: "enemy")!
             }
         }
     }
-    
-    init(name: String, startingHp: Int, attackPwr: Int) {
-        self._hp = startingHp
-        self._attackPwr = attackPwr
-
-    }
-    
-//    func receiveAttack(attackPwr: Int) {
-//        self._hp -= attackPwr
-// 
-//    }
-    
-    func performAttack(attackingPlayer: Character, playerBeingAttacked: Character) {
-        // Randomize attack power
-        attackingPlayer.randomizeAttackPwr()
-        
-        if playerBeingAttacked._hp <= 0 {
-            playerBeingAttacked._hp -= attackingPlayer._attackPwr
-        }
-    }
-    
-    // Randomize the attack power of player
-    func randomizeAttackPwr() {
-        self._attackPwr = 20
-    }
-    
 }

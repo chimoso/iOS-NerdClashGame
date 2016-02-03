@@ -10,82 +10,65 @@ import UIKit
 
 class ViewController: UIViewController {
 
-    @IBOutlet weak var player1Lbl: UILabel!
-    @IBOutlet weak var player2Lbl: UILabel!
-    @IBOutlet weak var messageLbl: UILabel!
-    @IBOutlet weak var player1Img: UIImageView!
-    @IBOutlet weak var player2Img: UIImageView!
-    @IBOutlet weak var player1AttackBtn: UIButton!
-    @IBOutlet weak var player2AttackBtn: UIButton!
+    @IBOutlet weak var player1HpLabel: UILabel!
+    @IBOutlet weak var player2HpLabel: UILabel!
+    @IBOutlet weak var messageLabel: UILabel!
+    @IBOutlet weak var player1NameLabel: UILabel!
+    @IBOutlet weak var player2NameLabel: UILabel!
+    @IBOutlet weak var player1Image: UIImageView!
+    @IBOutlet weak var player2Image: UIImageView!
+    @IBOutlet weak var player1AttackButton: UIButton!
+    @IBOutlet weak var player2AttackButton: UIButton!
+    @IBOutlet weak var player1StackView: UIStackView!
+    @IBOutlet weak var player2StackView: UIStackView!
+    @IBOutlet weak var player1NameField: UITextField!
+    @IBOutlet weak var player2NameField: UITextField!
+    @IBOutlet weak var player1SegmentedControl: UISegmentedControl!
+    @IBOutlet weak var player2SegmentedControl: UISegmentedControl!
+    @IBOutlet weak var restartButton: UIButton!
     
-    var player1: Player!
-    var player2: Player!
-
+    var gameInstance: Game!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Create player objects
-        player1 = Player(name: "Barbarian", hp: 120, attackPwr: 12)
-        player2 = Player(name: "Gladiator", hp: 100, attackPwr: 14)
-        
-        player1Lbl.text = "\(player1.hp) HP"
-        player2Lbl.text = "\(player2.hp) HP"
+        // Initialize game
+        gameInstance = Game(vc: self)
+        gameInstance.setUpGame()
     }
 
-    
-    @IBAction func onTapPlyr1AttackBtn(sender: AnyObject) {
-
-            player2.receiveAttack(player1.attackPwr)
-            messageLbl.text = "\(player1.name) attacked \(player2.name) for \(player1.attackPwr) HP"
-            player2Lbl.text = "\(player2.hp) HP"
-            player2AttackBtn.hidden = true
-
-        
-        if !player2.isAlive {
-            player2Img.hidden = true
-            player2Lbl.hidden = true
-            player1AttackBtn.hidden = true
-            player2AttackBtn.hidden = true
-            player1Lbl.hidden = true
-            messageLbl.text = "\(player1.name) vanquished \(player2.name)!!"
-        
-        } else {
-            NSTimer.scheduledTimerWithTimeInterval(3.0, target: self, selector: "player2ButtonRestore", userInfo: nil, repeats: false)
-        }
+    @IBAction func player1AcceptButtonTapped(sender: AnyObject) {
+        // Create player 1.
+        gameInstance.createPlayer(1, hpIn: 100, attackPowerIn: 20, nameIn: player1NameField.text!, imageChoiceIn: player1SegmentedControl.selectedSegmentIndex)
     }
     
-    @IBAction func onTapPlyr2AttackBtn(sender: AnyObject) {
+    @IBAction func player2AcceptButtonTapped(sender: AnyObject) {
+        // Create player 2.
+        gameInstance.createPlayer(2, hpIn: 100, attackPowerIn: 20, nameIn: player2NameField.text!, imageChoiceIn: player2SegmentedControl.selectedSegmentIndex)
+    }
+    
+    @IBAction func player1Attack(sender: AnyObject) {
+        // Disable player 1's 'Attack' button and enable player 2's.
+        player1AttackButton.enabled = false
+        player2AttackButton.enabled = true
         
-            player1.receiveAttack(player2.attackPwr)
-            messageLbl.text = "\(player2.name) attacked \(player1.name) for \(player2.attackPwr) HP"
-            player1Lbl.text = "\(player1.hp) HP"
-            player1AttackBtn.hidden = true
-
-        
-        if !player1.isAlive {
-            player1Img.hidden = true
-            player1Lbl.hidden = true
-            player2AttackBtn.hidden = true
-            player1AttackBtn.hidden = true
-            player2Lbl.hidden = true
-            messageLbl.text = "\(player2.name) vanquished \(player1.name)!!"
-            
-        } else {
-            NSTimer.scheduledTimerWithTimeInterval(3.0, target: self, selector: "player1ButtonRestore", userInfo: nil, repeats: false)
-        }
+        // Perform the attack.
+        gameInstance.setUpAttack(gameInstance.player1, playerBeingAttackedIn: gameInstance.player2)
         
     }
     
-    func player2ButtonRestore() {
+    @IBAction func player2Attack(sender: AnyObject) {
         
-       player2AttackBtn.hidden = false
+        // Disable player 2's 'Attack' button and enable player 1's.
+        player1AttackButton.enabled = true
+        player2AttackButton.enabled = false
         
+        // Perform the attack.
+        gameInstance.setUpAttack(gameInstance.player2, playerBeingAttackedIn: gameInstance.player1)
     }
     
-    func player1ButtonRestore() {
-        
-        player1AttackBtn.hidden = false
-        
+    @IBAction func restartButtonTapped(sender: AnyObject) {
+        // Restart the game when the 'Restart' button is pressed.
+        gameInstance.restartGame()
     }
 
 
